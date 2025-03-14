@@ -57,5 +57,5 @@ void print_path(const vector<int>& v, int total){
         cout << node <<" ";
     }
 
-    cout << total << endl;
+    cout << "Total cost is" <<  total << endl;
 }
