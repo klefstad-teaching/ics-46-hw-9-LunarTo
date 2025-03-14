@@ -45,13 +45,15 @@ vector<int> extract_shortest_path(const vector<int>& distances, const vector<int
         }
     }
 
-    
+
     return shortPath;
 }
 
 //what does print path do, and what does the total do 
 void print_path(const vector<int>& v, int total){
-    for(int i = 0; i < total; ++i){
-        cout << v[i] << endl;
+    for (int node : v){
+        cout << node <<" ";
     }
+
+    cout << total << endl;
 }
