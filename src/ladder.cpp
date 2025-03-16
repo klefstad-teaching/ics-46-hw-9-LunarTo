@@ -61,30 +61,33 @@ bool is_adjacent(const string& word1, const string& word2){
     }
 
     //still adjacent but extra or missing letter
-    int trav = 0;
     int num = 0;
     int i = 0, j =0;
     if(abs(hold1 - hold2) == 1){
         if(hold1 > hold2){
-            for(; i < hold1 && j < hold2 ; ++j){
+            while(i < hold1 && j < hold2){
                 if(word1[i] == word2[j]){
                     ++i;
-                }
-                else{
-                    ++num;
-                }
-            }  
-        }      
-
-        if(hold1 < hold2){
-            for(; i < hold1 && j < hold2 ; ++i){
-                if(word1[i] == word2[j]){
                     ++j;
                 }
                 else{
+                    ++i;
                     ++num;
                 }
-            }  
+            }
+        }      
+
+        if(hold1 < hold2){
+            while(i < hold1 && j < hold2){
+                if(word1[i] == word2[j]){
+                    ++i;
+                    ++j;
+                }
+                else{
+                    ++j;
+                    ++num;
+                }
+            }
         }  
         if(num > 1){
             return false;
