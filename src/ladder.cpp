@@ -20,7 +20,7 @@ bool edit_distance_within(const std::string& str1, const std::string& str2, int 
         }
     }
 
-    if(editAmount != d){
+    if(editAmount > d){
         return false;
     }
 
