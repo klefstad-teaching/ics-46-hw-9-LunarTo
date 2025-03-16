@@ -50,7 +50,10 @@ bool is_adjacent(const string& word1, const string& word2){
         }
     }
 
-    return true;
+    if(num == 1){
+        return true;
+    }
+    return false;
 }
 
 //need to look at this one
