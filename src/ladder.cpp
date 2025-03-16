@@ -18,7 +18,7 @@ bool is_adjacent(const string& word1, const string& word2){
     int distance = 0;
 
 
-    return true;
+    return false;
 }
 
 //need to look at this one
