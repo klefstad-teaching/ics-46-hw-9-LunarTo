@@ -8,7 +8,7 @@ void error(string word1, string word2, string msg){
 
 //trying to see if the distance between two strings equal with d
 bool edit_distance_within(const std::string& str1, const std::string& str2, int d){
-    int editAmount;
+    int editAmount = 0;
 
     for(int i = 0, j = 0 ; i < str1.size() || j < str2.size() ; ++i, ++j ){
         if(str1[i] == str2[j]){
