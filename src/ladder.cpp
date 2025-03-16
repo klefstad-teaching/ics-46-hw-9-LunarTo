@@ -25,24 +25,20 @@ bool edit_distance_within(const std::string& str1, const std::string& str2, int 
         }
         else{
             ++editAmount;
-            if(editAmount > d){
-            return false;
-            }
+
             if(str1.size() > str2.size()){
                 ++i;
             }
             else if(str2.size() > str1.size()){
                 ++j;
             }
-            else{
-                ++i;
-                ++j;
-            }
         }
     }
-    editAmount += (hold1 - i) + (hold2 - j);
+    if(editAmount > d){
+        return false;
+    }
 
-    return editAmount <= d;
+    return true;
 }
 
 //uses edit distance
@@ -64,6 +60,9 @@ vector<string> generate_word_ladder(const string& begin_word, const string& end_
     vector<string> ladder;
     string last;
 
+    if(begin_word == end_word){
+        return {begin_word};
+    }
     
     while(!ladderQueue.empty()){
         ladder = ladderQueue.front();
