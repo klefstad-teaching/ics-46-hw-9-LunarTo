@@ -16,6 +16,13 @@ bool edit_distance_within(const std::string& str1, const std::string& str2, int 
         }
         else{
             ++editAmount;
+
+            if(str1.size() > str2.size()){
+                ++i;
+            }
+            else if(str2.size() > str1.size()){
+                ++j;
+            }
         }
     }
 
