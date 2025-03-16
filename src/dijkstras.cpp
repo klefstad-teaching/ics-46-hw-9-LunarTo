@@ -11,7 +11,7 @@ vector<int> dijkstra_shortest_path(const Graph& G, int source, vector<int>& prev
 
     //this is set equal to undefined, but undefined wont work
     previous[source] = 0;
-    priority_queue<pair<int,int>> minHeap;
+    priority_queue<pair<int,int>,vector<pair<int,int>>,greater<pair<int,int>>> minHeap;
     minHeap.push({source,0});
 
     while(!minHeap.empty()){
