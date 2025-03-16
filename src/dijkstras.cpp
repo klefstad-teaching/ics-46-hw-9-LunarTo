@@ -9,15 +9,16 @@ vector<int> dijkstra_shortest_path(const Graph& G, int source, vector<int>& prev
 
     distances[source] = 0;
 
-    //this is set equal to undefined, but undefined wont work
     previous.assign(numVertices,-1);
     priority_queue<pair<int,int>,vector<pair<int,int>>,greater<pair<int,int>>> minHeap;
     minHeap.push({source,0});
 
     while(!minHeap.empty()){
-        //implementation might be different
         int u = minHeap.top().first;
+        int check = minHeap.top().second;
         minHeap.pop();
+
+        if(check > distances[u]) continue;
 
         if(visited[u]) continue;
         visited[u] = true;
@@ -41,9 +42,6 @@ vector<int> extract_shortest_path(const vector<int>& distances, const vector<int
 
     //check -1 for predecessor
     for(int i = destination; i != -1; i = previous[i]){
-        // if(distances[i] != 0){
-        //     shortPath.push_back(i);
-        // }
         shortPath.push_back(i);
     }
 
