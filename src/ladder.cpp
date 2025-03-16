@@ -61,16 +61,19 @@ vector<string> generate_word_ladder(const string& begin_word, const string& end_
         return {begin_word};
     }
     while(!ladderQueue.empty()){
-        ladder = ladderQueue.front();
-        ladderQueue.pop();
+        int size = ladderQueue.size();
 
-        last = ladder.back();
-        for(string word : word_list){
-            if(is_adjacent(last, word)){
+        for(int i = 0; i < size ; ++i){
+            ladder = ladderQueue.front();
+            ladderQueue.pop();
+
+            last = ladder.back();
+            for(string word : word_list){
                 if(visited.find(word) == visited.end()){
                     visited.insert(word);
                     vector<string> newLadder = ladder;
                     newLadder.push_back(word);
+
                     if(word == end_word){
                         return newLadder;
                     }
