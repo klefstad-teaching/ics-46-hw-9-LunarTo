@@ -39,11 +39,18 @@ bool edit_distance_within(const std::string& str1, const std::string& str2, int 
 
 //uses edit distance
 bool is_adjacent(const string& word1, const string& word2){
-    int distance = 1;
-    if(edit_distance_within(word1,word2, distance)){
-        return true;
+    //return edit_distance_within(word1, word2, 1);
+    int num;
+    for(int i = 0; i < word1.size() ; ++i){
+        if(word1[i] != word2[i]){
+            ++num;
+        }
+        if(num > 1){
+            return false;
+        }
     }
-    return false;
+
+    return true;
 }
 
 //need to look at this one
@@ -54,17 +61,14 @@ vector<string> generate_word_ladder(const string& begin_word, const string& end_
     visited.insert(begin_word);
     ladderQueue.push({begin_word});
 
-    
-    vector<string> ladder;
-    string last;
     while(!ladderQueue.empty()){
         int size = ladderQueue.size();
 
         for(int i = 0; i < size ; ++i){
-            ladder = ladderQueue.front();
+            vector<string> ladder = ladderQueue.front();
             ladderQueue.pop();
 
-            last = ladder.back();
+            string last = ladder.back();
             for(string word : word_list){
                 if(is_adjacent(last,word)){
                     if(visited.find(word) == visited.end()){
@@ -101,6 +105,8 @@ void print_word_ladder(const vector<string>& ladder){
     }
 }
 
+
+//
 void verify_word_ladder(){
     cout << "Test" <<endl;
     set<string> wordList = {"cat, cot, cod, dod, dog"};
