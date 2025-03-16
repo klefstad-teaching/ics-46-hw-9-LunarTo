@@ -40,23 +40,59 @@ bool edit_distance_within(const std::string& str1, const std::string& str2, int 
 //uses edit distance
 bool is_adjacent(const string& word1, const string& word2){
     //return edit_distance_within(word1, word2, 1);
-    int hold1= word1.size();
+    int hold1 = word1.size();
     int hold2 = word2.size();
-    if(abs(hold1 - hold2) <= 1){
+
+    //check same length but more than one char diff
+    int check1 = 0;
+    if(hold1 == hold2){
+        for(int i = 0; i < hold1; ++i){
+            if(word1[i] == word2[i]){
+                continue;
+            }
+            else{
+                ++check1;
+            }
+        }
+        if(check1 > 1){
+            return false;
+        }
         return true;
     }
+
+    //still adjacent but extra or missing letter
+    int trav = 0;
     int num = 0;
-    for(int i = 0; i < word1.size() ; ++i){
-        if(word1[i] != word2[i]){
-            ++num;
-        }
+    int i = 0, j =0;
+    if(abs(hold1 - hold2) == 1){
+        if(hold1 > hold2){
+            for(; i < hold1 && j < hold2 ; ++j){
+                if(word1[i] == word2[j]){
+                    ++i;
+                }
+                else{
+                    ++num;
+                }
+            }  
+        }      
+
+        if(hold1 < hold2){
+            for(; i < hold1 && j < hold2 ; ++i){
+                if(word1[i] == word2[j]){
+                    ++j;
+                }
+                else{
+                    ++num;
+                }
+            }  
+        }  
         if(num > 1){
             return false;
         }
-    }
+        else{
+            return true;
+        }
 
-    if(num == 1){
-        return true;
     }
     return false;
 }
