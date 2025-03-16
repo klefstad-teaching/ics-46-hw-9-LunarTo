@@ -25,7 +25,9 @@ bool edit_distance_within(const std::string& str1, const std::string& str2, int 
         }
         else{
             ++editAmount;
-
+            if(editAmount > d){
+            return false;
+            }
             if(str1.size() > str2.size()){
                 ++i;
             }
@@ -39,11 +41,8 @@ bool edit_distance_within(const std::string& str1, const std::string& str2, int 
         }
     }
     editAmount += (hold1 - i) + (hold2 - j);
-    if(editAmount > d){
-        return false;
-    }
 
-    return true;
+    return editAmount <= d;
 }
 
 //uses edit distance
