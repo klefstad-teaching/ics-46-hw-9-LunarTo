@@ -56,10 +56,6 @@ vector<string> generate_word_ladder(const string& begin_word, const string& end_
     
     vector<string> ladder;
     string last;
-
-    if(begin_word  == end_word){
-        return {begin_word};
-    }
     while(!ladderQueue.empty()){
         int size = ladderQueue.size();
 
