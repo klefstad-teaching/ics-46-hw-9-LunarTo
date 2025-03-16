@@ -1,7 +1,6 @@
 #include "ladder.h"
 #include <fstream>
 #include <unordered_set>
-#include <cmath>
 
 void error(string word1, string word2, string msg){
     cout << word1 << word2 << msg << endl;
@@ -17,9 +16,7 @@ bool edit_distance_within(const std::string& str1, const std::string& str2, int 
         return false;
     }
 
-    int i = 0;
-    int j = 0;
-    for(; i < str1.size() && j < str2.size() ; ++i, ++j ){
+    for(int i = 0, j = 0 ; i < str1.size() && j < str2.size() ; ++i, ++j ){
         if(str1[i] == str2[j]){
             continue;
         }
@@ -36,8 +33,8 @@ bool edit_distance_within(const std::string& str1, const std::string& str2, int 
             }
         }
     }
-    editAmount += (str1.size() - i) + (str2.size() - j);
-    return editAmount <= d;
+
+    return true;
 }
 
 //uses edit distance
@@ -88,7 +85,6 @@ vector<string> generate_word_ladder(const string& begin_word, const string& end_
     
 }
 
-//what does this function do, not sure if im doing the right thing
 void load_words(set<string> & word_list, const string& file_name){
     ifstream in(file_name);
     string line;
@@ -107,4 +103,8 @@ void print_word_ladder(const vector<string>& ladder){
 
 void verify_word_ladder(){
     cout << "Test" <<endl;
-}
+    set<string> wordList = {"cat, cot, cod, dod, dog"};
+    vector<string> size;
+    size = generate_word_ladder("cat","dog",wordList);
+    cout << size.size() << endl;
+}   
