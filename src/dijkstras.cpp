@@ -17,8 +17,8 @@ vector<int> dijkstra_shortest_path(const Graph& G, int source, vector<int>& prev
         int u = minHeap.top().first;
         minHeap.pop();
 
-        if(visited[u]) continue;
-        visited[u] = true;
+        // if(visited[u]) continue;
+        // visited[u] = true;
 
         for(Edge edge: G[u]){
             int v = edge.dst;
