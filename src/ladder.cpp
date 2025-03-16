@@ -50,9 +50,11 @@ bool is_adjacent(const string& word1, const string& word2){
 //need to look at this one
 vector<string> generate_word_ladder(const string& begin_word, const string& end_word, const set<string>& word_list){
     queue<vector<string>> ladderQueue;
-    ladderQueue.push({begin_word});
     unordered_set<string> visited;
+
     visited.insert(begin_word);
+    ladderQueue.push({begin_word});
+
     
     vector<string> ladder;
     string last;
@@ -65,7 +67,7 @@ vector<string> generate_word_ladder(const string& begin_word, const string& end_
 
             last = ladder.back();
             for(string word : word_list){
-                if(is_adjacent(last,end_word)){
+                if(is_adjacent(last,word)){
                     if(visited.find(word) == visited.end()){
                         visited.insert(word);
                         vector<string> newLadder = ladder;
