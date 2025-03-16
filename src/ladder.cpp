@@ -40,11 +40,12 @@ bool edit_distance_within(const std::string& str1, const std::string& str2, int 
     return true;
 }
 
-//testing my idea of what is adjacent is
+//uses edit distance
 bool is_adjacent(const string& word1, const string& word2){
-    int distance = 0;
-
-
+    int distance = 1;
+    if(edit_distance_within(word1,word2, distance)){
+        return true;
+    }
     return false;
 }
 
