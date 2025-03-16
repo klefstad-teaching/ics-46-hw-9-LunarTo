@@ -14,11 +14,8 @@ vector<int> dijkstra_shortest_path(const Graph& G, int source, vector<int>& prev
     minHeap.push({source,0});
 
     while(!minHeap.empty()){
-        int u = minHeap.top().second;
-        int check = minHeap.top().first;
+        int u = minHeap.top().first;
         minHeap.pop();
-
-        if(check > distances[u]) continue;
 
         if(visited[u]) continue;
         visited[u] = true;
