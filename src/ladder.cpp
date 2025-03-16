@@ -1,6 +1,7 @@
 #include "ladder.h"
 #include <fstream>
 #include <unordered_set>
+#include <cmath>
 
 void error(string word1, string word2, string msg){
     cout << word1 << word2 << msg << endl;
@@ -9,6 +10,12 @@ void error(string word1, string word2, string msg){
 //trying to see if the distance between two strings equal with d
 bool edit_distance_within(const std::string& str1, const std::string& str2, int d){
     int editAmount = 0;
+
+    int hold1 = str1.size();
+    int hold2 = str2.size();
+    if(abs(hold1 - hold2) > d){
+        return false;
+    }
 
     for(int i = 0, j = 0 ; i < str1.size() && j < str2.size() ; ++i, ++j ){
         if(str1[i] == str2[j]){
