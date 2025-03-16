@@ -7,7 +7,7 @@ void error(string word1, string word2, string msg){
     cout << word1 << word2 << msg << endl;
 }
 
-//trying to see if the distance between two strings equal with d
+//trying to see if the distance between two strings equal with d, need to account for substiutions
 bool edit_distance_within(const std::string& str1, const std::string& str2, int d){
     int editAmount = 0;
 
@@ -17,7 +17,9 @@ bool edit_distance_within(const std::string& str1, const std::string& str2, int 
         return false;
     }
 
-    for(int i = 0, j = 0 ; i < str1.size() && j < str2.size() ; ++i, ++j ){
+    int i = 0;
+    int j = 0;
+    for(; i < str1.size() && j < str2.size() ; ++i, ++j ){
         if(str1[i] == str2[j]){
             continue;
         }
@@ -30,9 +32,13 @@ bool edit_distance_within(const std::string& str1, const std::string& str2, int 
             else if(str2.size() > str1.size()){
                 ++j;
             }
+            else{
+                ++i;
+                ++j;
+            }
         }
     }
-
+    editAmount += (hold1 - i) + (hold2 - j);
     if(editAmount > d){
         return false;
     }
@@ -58,6 +64,8 @@ vector<string> generate_word_ladder(const string& begin_word, const string& end_
     
     vector<string> ladder;
     string last;
+
+    
     while(!ladderQueue.empty()){
         ladder = ladderQueue.front();
         ladderQueue.pop();
@@ -94,7 +102,7 @@ void load_words(set<string> & word_list, const string& file_name){
 
 void print_word_ladder(const vector<string>& ladder){
     for(int i = 0; i < ladder.size() ; ++i){
-        cout << ladder[i] << endl;
+        cout << ladder[i] << " ";
     }
 }
 
