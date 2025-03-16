@@ -17,7 +17,9 @@ bool edit_distance_within(const std::string& str1, const std::string& str2, int 
         return false;
     }
 
-    for(int i = 0, j = 0 ; i < str1.size() && j < str2.size() ; ++i, ++j ){
+    int i = 0;
+    int j = 0;
+    for(; i < str1.size() && j < str2.size() ; ++i, ++j ){
         if(str1[i] == str2[j]){
             continue;
         }
@@ -34,8 +36,8 @@ bool edit_distance_within(const std::string& str1, const std::string& str2, int 
             }
         }
     }
-
-    return true;
+    editAmount += (str1.size() - i) + (str2.size() - j);
+    return editAmount <= d;
 }
 
 //uses edit distance
